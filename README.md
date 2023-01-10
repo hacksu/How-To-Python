@@ -41,7 +41,7 @@ If you put some text in quotation marks, you create a string, which is a type of
 print(mouse)
 ```
 
-Run this program on the command line by typing `python inventory.py` (or maybe `python3 inventory.py`.) As you can see, whereas before we were printing a string, we are now printing a variable, and we are getting the string that was stored in that variable. In general, variable names give you a way to refer to data without writing all the data out. Change it and try this again:
+Run this program on the command line by typing `python inventory.py` (or maybe `python3 inventory.py`.) As you can see, whereas before we were printing a string, we are now printing a variable, and we are getting the string that was stored in that variable. In general, variable names give you a way to refer to data without writing all the data out; you can think of them as being automatically replaced by that data behind the scenes. Change it and try this again:
 
 ```python
 mouse = "Chuck E. Cheese"
@@ -121,7 +121,7 @@ print(new_mouse)
 This new function, "input", initially seems to act like the print function, but there's something else that happens after your string is printed out: it collects some text from the command line and returns it, basically being replaced by that text, so that text can be stored in a variable. To see this, you have to type the text into the prompt at the command line and then hit enter. So when I run the program and type Wolfgang Amadeus Mousezart, that string goes inside the program to be stored in a variable. We can take this one step further:
 
 ```python
-new_mouse = input("Enter a mouse name:")
+new_mouse = input("Enter a mouse name: ")
 print("You entered:")
 print(new_mouse)
 mice.append(new_mouse)
@@ -137,7 +137,36 @@ print(new_mouse.lower())
 print(new_mouse.upper())
 ```
 
-Structures that package functions and data together like strings and lists do are usually called objects. We will see how to create our own custom objects later. In the meantime, let's go back to making our variables less predictable.
+Structures that package functions and data together like strings and lists do are usually called objects. We will see how to create our own custom objects later. In the meantime, let's go back to making our variables less predictable. Replace the line `mice.append(new_mouse)` in that earlier code with this:
+
+```python
+while new_mouse != "quit":
+    mice.append(new_mouse)
+    new_mouse = input("Enter a mouse name: ")
+```
+
+This is a while loop. Like a for loop, it will run some indented code over and over. Unlike a for loop, it can run indefinitely, instead of just activating once for each item in a list. In the first line of our while loop, which uses the magic word "while", we have the symbols exclamation mark and equals. Together, these two symbols mean "does not equal." With that in mind, you can read this kind of like English: while the variable new_mouse does not equal the string "quit", run these indented lines of code. This loop would run forever if we had no opportunity to modify the value stored by `new_mouse`, but luckily we do: over and over again, the result of the call to the "input" function will be assigned to it.
+
+In other words, this code will first ask us to enter a mouse name before the while loop. Then it will enter the while loop unless we typed "quit"; while loops do not always get the chance to even run once. Then, it will append that new mouse name to the list "mice" and then ask us for another new mouse name. These last two steps will repeat until new_mouse is equal to the string "quit", because we typed "quit" into the command prompt. This allows us to enter and store an indefinite number of mice and then stop when we want to.
+
+If your while loop ever tries to run away with your program and starts running over and over again, click in the console and press Control-C to stop it, and then take a look at the code again.
+
+The ability to do things over and over again an arbitrary number of times is very important and useful, and our code is getting more like a real program by the second. However, there is one problem. If I were to do something dumb like just hit enter a bunch of times when it asked me to input a mouse name, the result would be a bunch of empty strings in the `mice` list. That's right: it turns out that strings can be empty and store zero characters. To prevent that, we can set up a guardrail with an if statement:
+
+```python
+while new_mouse != "quit":
+    if len(new_mouse) > 0:
+        mice.append(new_mouse)
+    else:
+        print("name too short >:(")
+    new_mouse = input("Enter a mouse name: ")
+```
+
+This code uses the magic words "if" and "else" and the function "len" that we looked at before. That's right: it turns out that strings have lengths just like lists do, and you can use the same function to get them. An if-else statement will run some indented code if some certain logical condition is true: in this case, if the length of the new mouse's name is greater than 0. Otherwise, it will run some different code, which needs to appear below a line that just says "else:"; in this case, we're printing an error message to the program's user. Which is you in this case, but could be someone else in some other contexts.
+
+Note that this is different from the condition in the while loop because we're not stopping the whole process based on it; we're printing an error message if what we want to be true isn't true, but the loop will still continue, so the user can try again. Aside from that, though, the types of conditions that can be used in while loops, in if statements, and in other places are all the same, and we could use a while loop with a greater-than symbol or an if statement with a not-equal-to symbol if we wanted.
+
+So, we now have the ability to enter into our computer the names of infinite mice. custom functions next with for loops in them. print_if_name_contains(substring), count_if_name_contains(substring).
 
 
 
