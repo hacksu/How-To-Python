@@ -86,7 +86,11 @@ number_of_mice = len(mice)
 print(number_of_mice)
 ```
 
-"len" is the abbreviated form of the word "length" and, when called as a function with our list of mice as its input, it will tell us how long our list is. When functions give us information, it's called "returning" something, and you can imagine that the code `len(mice)` disappears and is replaced by the data the function ends up returning; in this case, the number 3. By the way, did you know that you can store numbers in variables? Those are different from strings. You can do math with them.
+"len" is the abbreviated form of the word "length" and, when called as a function with our list of mice as its input, it will tell us how long our list is. When functions give us information, it's called "returning" something, and you can imagine that the code `len(mice)` disappears and is replaced by the data the function ends up returning; in this case, the number 3.
+
+*The below math content and extra built-in functions could be cut for time*
+
+By the way, did you know that you can store numbers in variables? Those are different from strings. You can do math with them.
 
 ```python
 number_of_mice = len(mice)
@@ -94,8 +98,6 @@ print(number_of_mice + 2)
 ```
 
 I don't know why you would want to do that specifically! But the point is, when a variable stores a number you can use it for math. (When it stores a string, not so much.) Pretty much any mathematical expression that you can type into a calculator, you can type into a programming language, and in the programming language you can use variable names when you want to use values that a program has previously stored. Just like how a function call disappears and is replaced with its result, mathematical expressions just sort of disappear when the program runs and are replaced by their answer.
-
-*The below extra built-in functions could be cut for time*
 
 There are more built-in functions in Python. Watch this:
 
@@ -124,12 +126,10 @@ print("You entered:")
 print(new_mouse)
 ```
 
-This new function, "input", initially seems to act like the print function, but there's something else that happens after your string is printed out: it collects some text from the command line and returns it so that text can be stored in a variable. To see this, you have to type the text into the prompt at the command line and then hit enter. So when I run the program and type Wolfgang Amadeus Mousezart, that string goes inside the program to be stored in a variable. We can take this one step further:
+This new function, "input", initially seems to act like the print function, but there's something else that happens after your string is printed out: it collects some text from the command line and returns it so that text can be stored in a variable. To see this, you have to type the text into the prompt at the command line and then hit enter. So when I run the program and type Wolfgang Amadeus Mousezart, that string goes inside the program and can be referred to with a variable. We can take this one step further:
 
 ```python
 new_mouse = input("Enter a mouse name: ")
-print("You entered:")
-print(new_mouse)
 mice.append(new_mouse)
 print(mice)
 ```
@@ -143,13 +143,13 @@ print(new_mouse.lower())
 print(new_mouse.upper())
 ```
 
-Structures that package functions and data together like strings and lists do are usually called objects. Objects are a whole entire can of worms, so let's go back to making our variables less predictable.
+Structures that package functions and data together like strings and lists do are usually called objects.
 
 ## Conditions: while loops and if statements
 
 *This whole section could be cut for time; if statements would then be introduced under "Custom functions"*
 
-Replace the line `mice.append(new_mouse)` in that earlier code with this:
+Objects are a whole entire can of worms, so let's go back to making our variables less predictable. Replace the line `mice.append(new_mouse)` in that earlier code with this:
 
 ```python
 new_mouse = input("Enter a mouse name: ")
@@ -184,45 +184,45 @@ Note that this is different from the condition in the while loop because we're n
 So, we now have the ability to enter into our computer the names of infinite mice. A lot of computer applications, like library card catalogs and inventory systems, are basically just tasked with storing lists and giving users to ability to search and filter them. We are halfway there. To do this, I'm actually going to switch to a new file that doesn't isn't going to ask me to enter names every time I run it: for demonstration purposes, I'm going to work with a static list of mouse names. This is basically just cheating to avoid entering them all into the command line.
 
 ```python
-mice = ["Logitech G502 HERO SE", "Logitech MS Master 3S", "Hatsune Squeaku", "Wolfgang Amadeus Mousezart", "Anonymouse"]
+mice = ["Logitech G502 HERO SE", "Logitech MS Master 3S", "Tailer Swift", "Anonymouse", "Hatsune Squeaku"]
 ```
 
-Anyway, the idea is: if we have a list containing, let's say, thousands and thousands of mice, we want the computer to be able to find specific items for us. To make it do this, we are going to define a custom function called `search_for`. To define a function, you write the keyword "def", the name you're giving to the function, and then parentheses with a list (comma-separated) of the input variables you want the function to have.
+Anyway, the idea is: if we have a list containing, let's say, thousands and thousands of mice, we want the computer to be able to find specific items for us. To make it do this, we are going to define a custom function called `search_for`. To define a function, you write the keyword "def", the name you're giving to the function, and then parentheses with a list of the input variables you want the function to have (in this case only one). The input variables consist of things you want to potentially change every time the function is run; otherwise, you can use variables from outside the function normally, although doing that too much can get a little bit disorganized.
 
 ```python
-def search_for(mouse_list, search_term):
+def search_for(search_term):
 ```
 
 These input variables, which are called parameters, don't have any intrinsic value. However, when the function is called, they will be given the values that are placed within the parentheses at that point in the code. The parameters are placeholders here but when the function is called, they can become anything. Now we need an indented block of code that will actually run at that point, when the function is called.
 
 ```python
-def search_for(mouse_list, search_term):
-    for mouse in mouse_list:
+def search_for(search_term):
+    for mouse in mice:
         if search_term == mouse:
             print("Found:")
             print(mouse)
 ```
 
-We're starting to get to a dangerous level of indentation, so let's break this down. All of the code that is part of the function and thus will run when it is called needs to be indented to indicate that it's part of the function. Then, we start a for loop; remember, this will set the new variable `mouse` equal to each successive item in our input variable (parameter) `mouse_list`. The code that is repeatedly run by the for loop has to be indented too to indicate that it's inside the loop. Then we have an if statement, which specifies that the indented code below it will only run if a certain condition is true. In this case, the condition compares the parameter `search_term` to the loop variable `mouse` using the double equals sign operator, which looks for equality between the thing on the left and the thing on the right of it. (The single equals sign needs to be used only for assignment, not for comparison.) And the indented code under the if statement, which will be run if the condition is true, simply prints the loop variable `mouse` out.
+We're starting to get to a dangerous level of indentation, so let's break this down. All of the code that is part of the function and thus will run when it is called needs to be indented to indicate that it's part of the function. Then, we start a for loop; remember, this will set the new variable `mouse` equal to each successive item in our list `mice`. The code that is repeatedly run by the for loop has to be indented too, to indicate that it's inside the loop. Then we have an if statement, which specifies that the indented code below it will only run if a certain condition is true. In this case, the condition compares the parameter `search_term` to the loop variable `mouse` using the double equals sign operator, which looks for equality between the thing on the left and the thing on the right of it. (The single equals sign needs to be used only for assignment, not for comparison.) And the indented code under the if statement, which will be run if the condition is true, simply prints the loop variable `mouse` out.
 
 Whew. We can now call this function with some inputs:
 
 ```python
-search_for(mice, "Anonymouse")
+search_for("Anonymouse")
 ```
 
-The parameter `mouse_list` will take on the value of `mice` and the parameter `search_term` will take on the value of the string `"Anonymouse"`, and that mouse will be printed out when the function runs with those variables. That's all very well, but it's very predictable since the search term string is baked right into the program. Let's try getting it from user input:
+The parameter `search_term` will take on the value of the string `"Anonymouse"`, and that mouse will be found in the list and then printed out when the function runs with those variables. That's all very well, but it's very predictable since the search term string is baked right into the program. Let's try getting it from user input:
 
 ```python
 term_from_input = input("Enter a search term: ")
-search_for(mice, term_from_input)
+search_for(term_from_input)
 ```
 
 Now we're using something from user input as a search term, and it can be different every time. So that's cool. But the program is still kind of boring since we're getting out exactly what we're putting in. Let's make one small change to our `search_for` function:
 
 ```python
-def search_for(mouse_list, search_term):
-    for mouse in mouse_list:
+def search_for(search_term):
+    for mouse in mice:
         if search_term in mouse:  # <-- in!
             print("Found:")
             print(mouse)
@@ -230,4 +230,34 @@ def search_for(mouse_list, search_term):
 
 Now, instead of the `print` code running if the search term and the mouse name are equal, they will run if the search term is merely somewhere in the mouse name. This means I can now just use "Logitech" as my input and get the full name of every Logitech mouse stored in the program.
 
-So now, after much tumult and turmoil, we have a searchable database of mouse names. 
+So now, after much tumult and turmoil, we have a searchable database of mouse names.
+
+## Dicts for more data
+
+There is another fun data structure that stores information in a very different way from lists. It is known as a dictionary, usually abbreviated to "dict", and it gives you a similar ability to looking up a word in a dictionary to see what its definition is, except the definition can be whatever you want. The thing you're looking up is called a key, and the "definition" that you get as a result is called a value. In this case, in addition to being able to look up the name of a mouse, I want to be able to look up what game each mouse is best at or best for. To do that, I'm going to define a variable called games right under the variable `mice`. The syntax of a dict looks like this.
+
+```python
+games = {
+    "Logitech G502 HERO SE": "Sonic",
+    "Logitech MS Master 3S": "Mario",
+    "Tailer Swift": "Apex Legends",
+    "Anonymouse": "Civ V",
+    "Hatsune Squeaku": "Osu"
+}
+```
+
+In a dict, you put the key that you want to be able to look up, then a colon, then the value that you want to be the result of looking up that key. Then you put a comma and add as many more key-value pairs as you like. (You don't have to type all of them, just the ones you want to look up)
+
+In the `search_for` function, I can now print out the game that a mouse is best at by looking it up, using the mouse name as a key:
+
+```python
+def search_for(search_term):
+    for mouse in mice:
+        if search_term in mouse:
+            print("Found:")
+            print(mouse)
+            print("It is best at playing:")
+            print(games[mouse])
+```
+
+So yeah. We're running code for every mouse name in the list, checking to see if a search term is present in it, and if it is, we're printing the mouse name and then using it as a key to look up a game in this dict, and then printing that.
