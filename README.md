@@ -160,7 +160,7 @@ while new_mouse != "quit":
 
 This is a while loop. Like a for loop, it will run some indented code over and over. Unlike a for loop, it can run indefinitely, instead of just activating once for each item in a list. In the first line of our while loop, which has to use the keyword "while", we have the symbols exclamation mark and equals. Together, these two symbols mean "does not equal." With that in mind, you can read this kind of like English: while the variable new_mouse does not equal the string "quit", run these indented lines of code. This loop would run forever if we had no opportunity to modify the value stored by `new_mouse`, but luckily we do: over and over again, the result of the call to the "input" function will be assigned to it.
 
-In other words, this code will first ask us to enter a mouse name before the while loop. Then it will enter the while loop unless we typed "quit"; while loops do not always get the chance to even run once. Then, it will append that new mouse name to the list "mice" and then ask us for another new mouse name. These last two steps will repeat until new_mouse is equal to the string "quit", because we typed "quit" into the command prompt. This allows us to enter and store an indefinite number of mice and then stop when we want to.
+In other words, this code will first ask us to enter a mouse name. Then, it will start executing the code that's indented under the while loop (unless we typed "quit" to begin with; while loops do not always get the chance to even run once.) In so doing, it will append that new mouse name to the list "mice" and then ask us for another new mouse name. These last two steps will repeat (in a \*loop*) until new_mouse is equal to the string "quit" because we typed "quit" into the command prompt. This allows us to enter and store an indefinite number of mice and then stop when we want to.
 
 If your while loop ever tries to run away with your program and starts running over and over again, click in the console and press Control-C to stop it, and then take a look at the code again.
 
@@ -175,25 +175,27 @@ while new_mouse != "quit":
     new_mouse = input("Enter a mouse name: ")
 ```
 
-This code uses the magic words "if" and "else" and the function "len" that we looked at before. That's right: it turns out that strings have lengths just like lists do, and you can use the same function to get them. An if-else statement will run some indented code if some certain logical condition is true: in this case, if the length of the new mouse's name is greater than 0. Otherwise, it will run some different code, which needs to appear below a line that just says "else:"; in this case, we're printing an error message to the program's user. Which is you in this case, but could be someone else in some other contexts.
+This code uses the magic words "if" and "else" and the function "len" that we looked at before. That's right: it turns out that strings have lengths just like lists do, and you can use the same function to get them. An if-else statement will run some indented code if some certain logical condition is true: in this case, if the length of the new mouse's name is greater than 0. Otherwise, it will run some different code, which needs to appear below a line that just says "else:"; in this case, we're printing an error message to the program's user. Which is you in this case, but could be someone else in other contexts.
 
 Note that this is different from the condition in the while loop because we're not stopping the whole process based on it; we're printing an error message if what we want to be true isn't true, but the loop will still continue, so the user can try again. Aside from that, though, the types of conditions that can be used in while loops, in if statements, and in other places are all the same, and we could use a while loop with a greater-than symbol or an if statement with a not-equal-to symbol if we wanted.
 
+So, we now have the ability to enter into our computer the names of infinite mice.
+
 ## Custom functions
 
-So, we now have the ability to enter into our computer the names of infinite mice. A lot of computer applications, like library card catalogs and inventory systems, are basically just tasked with storing lists and giving users to ability to search and filter them. We are halfway there. To do this, I'm actually going to switch to a new file that doesn't isn't going to ask me to enter names every time I run it: for demonstration purposes, I'm going to work with a static list of mouse names. This is basically just cheating to avoid entering them all into the command line.
+A lot of computer applications, like library card catalogs and inventory systems, are basically just tasked with storing lists and giving users to ability to search and filter them. We are halfway there. To do this, I'm actually going to switch to a new file that isn't going to ask me to enter names every time I run it: for demonstration purposes, I'm going to work with a static list of mouse names. This is basically just cheating to avoid entering them all into the command line.
 
 ```python
 mice = ["Logitech G502 HERO SE", "Logitech MS Master 3S", "Tailer Swift", "Anonymouse", "Hatsune Squeaku"]
 ```
 
-Anyway, the idea is: if we have a list containing, let's say, thousands and thousands of mice, we want the computer to be able to find specific items for us. To make it do this, we are going to define a custom function called `search_for`. To define a function, you write the keyword "def", the name you're giving to the function, and then parentheses with a list of the input variables you want the function to have (in this case only one). The input variables consist of things you want to potentially change every time the function is run; otherwise, you can use variables from outside the function normally, although doing that too much can get a little bit disorganized.
+Anyway, the idea is: if we have a list containing, potentially, thousands and thousands of mice, we want the computer to be able to find specific items in it for us. To make it do this, we are going to define a custom function called `search_for`. To define a function, you write the keyword "def", the name you're giving to the function, and then parentheses with a list of the input variables you want the function to have (in this case only one). The input variables consist of things you want to potentially change every time the function is run; otherwise, you can use variables from outside the function normally, although doing that too much can get a little bit disorganized.
 
 ```python
 def search_for(search_term):
 ```
 
-These input variables, which are called parameters, don't have any intrinsic value. However, when the function is called, they will be given the values that are placed within the parentheses at that point in the code. The parameters are placeholders here but when the function is called, they can become anything. Now we need an indented block of code that will actually run at that point, when the function is called.
+This input variables, which is called a parameter, doesn't have any intrinsic value. However, when the function is called, it will be given the value that is placed within the parentheses at that point in the code. In other words, parameters are placeholders initially, but when the function is called, they can become anything. Now we need an indented block of code that will actually run at the point at which the function is called.
 
 ```python
 def search_for(search_term):
@@ -203,7 +205,7 @@ def search_for(search_term):
             print(mouse)
 ```
 
-We're starting to get to a dangerous level of indentation, so let's break this down. All of the code that is part of the function and thus will run when it is called needs to be indented to indicate that it's part of the function. Then, we start a for loop; remember, this will set the new variable `mouse` equal to each successive item in our list `mice`. The code that is repeatedly run by the for loop has to be indented too, to indicate that it's inside the loop. Then we have an if statement, which specifies that the indented code below it will only run if a certain condition is true. In this case, the condition compares the parameter `search_term` to the loop variable `mouse` using the double equals sign operator, which looks for equality between the thing on the left and the thing on the right of it. (The single equals sign needs to be used only for assignment, not for comparison.) And the indented code under the if statement, which will be run if the condition is true, simply prints the loop variable `mouse` out.
+We are approaching dangerous levels of indentation here, so let's break this down. All of the code that is part of the function and thus will run when it is called needs to be indented to indicate that it's part of the function. Then, we start a for loop; remember, this will set the new variable `mouse` equal to each successive item in our list `mice`. The code that is repeatedly run by the for loop has to be indented too, to indicate that it's inside the loop. Then we have an if statement, which specifies that the indented code below it will only run if a certain condition is true. In this case, the condition compares the parameter `search_term` to the loop variable `mouse` using the double equals sign operator, which looks for equality between the thing on the left and the thing on the right of it. (The single equals sign needs to be used only for assignment, not for comparison.) And the indented code under the if statement, which will be run if the condition is true, simply prints the loop variable `mouse` out.
 
 Whew. We can now call this function with some inputs:
 
@@ -211,7 +213,7 @@ Whew. We can now call this function with some inputs:
 search_for("Anonymouse")
 ```
 
-The parameter `search_term` will take on the value of the string `"Anonymouse"`, and that mouse will be found in the list and then printed out when the function runs with those variables. That's all very well, but it's very predictable since the search term string is baked right into the program. Let's try getting it from user input:
+The parameter `search_term` will take on the value of the string "Anonymouse", and that mouse will be found in the list and then printed out as the function runs with those variables. That's all very well, but it's very predictable since the search term string is baked right into the program. Let's try getting it from user input:
 
 ```python
 term_from_input = input("Enter a search term: ")
@@ -228,7 +230,7 @@ def search_for(search_term):
             print(mouse)
 ```
 
-Now, instead of the `print` code running if the search term and the mouse name are equal, they will run if the search term is merely somewhere in the mouse name. This means I can now just use "Logitech" as my input and get the full name of every Logitech mouse stored in the program.
+Now, instead of the `print` code running if the search term and the mouse name are equal, they will run if the search term is merely somewhere inside the mouse name. This means I can now just use "Logitech" as my input and get the full name of every Logitech mouse stored in the program.
 
 So now, after much tumult and turmoil, we have a searchable database of mouse names.
 
@@ -241,7 +243,7 @@ games = {
     "Logitech G502 HERO SE": "Sonic",
     "Logitech MS Master 3S": "Mario",
     "Tailer Swift": "Apex Legends",
-    "Anonymouse": "Civ V",
+    "Anonymouse": "Civilization V",
     "Hatsune Squeaku": "Osu"
 }
 ```
