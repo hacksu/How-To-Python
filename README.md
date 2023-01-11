@@ -1,9 +1,9 @@
 # Python from Scratch - How to Write a Computer Program.
 An introduction to Python and perhaps to programming in general.
 
-This is a lesson on how to write a computer program. We are going to be doing this using the language Python, which according to [one of the industry's biggest surveys](https://survey.stackoverflow.co/2022/#section-most-popular-technologies-programming-scripting-and-markup-languages) was the fourth most widely used programming language in the world in 2022, and the most popular language that isn't specialized for databases or webpages. It's very approachable. It was named after the British comedy group Monty Python who made movies like the one about the Holy Grail. We're going to use it to write a computer program.
+## Setup
 
-We are going to journey through procedural programming, into functional programming, and finally hit up object-oriented programming in order to learn the whole CS1A and B curriculum, in like, ten minutes to an hour, we'll see. As we go, we're going to see the most basic and important data structures that programmers use as well as learning how logic and input work inside computers. If this still sounds basic, sorry, but this is only like week two of the semester. Play along, or heckle, or something. For anyone new to this stuff: welcome to programming. So. Does everyone have Python installed?
+This is a lesson on how to write a computer program. We are going to be doing this using the language Python, which according to [one of the industry's biggest surveys](https://survey.stackoverflow.co/2022/#section-most-popular-technologies-programming-scripting-and-markup-languages) was the fourth most widely used programming language in the world in 2022, and the most popular language that isn't specialized for databases or webpages. It's very approachable. It was named after the British comedy group Monty Python who made movies like the one about the Holy Grail. We're going to use it to write a computer program. Does everyone have Python?
 
 It is available at https://www.python.org/downloads/. I am using the latest version, Python 3.11, but any version that starts with "3" should be fine.
 
@@ -27,9 +27,11 @@ Write that, and then save it. Then, leave the text editor open, but run your new
 
 Did that work? If it did: great! The boring part is over. Now we can start programming. The hardest part of running Python programs is always the setup, even in this case where it's a really simple one.
 
+## Variables and strings
+
 You may have noticed that we have now written a computer program. It outputs the words "Hello, World" into the command line in which it was run. The word "print" in computer programming actually means "output this text to the command line;" it used to involve printers, but since then, screens were invented. The punctuation requirements here are pretty specific: you have to have the word "print", an open parenthesis, a quotation mark, some text, a closing quotation mark, and a closing parenthesis. All of this punctuation is part of a system: I promise. And now we can start to pull it apart and understand how it works.
 
-We've technically written a computer program, but it's not a very impressive one. I don't want to write a program to output some text to the command line; I want to write a program to keep track of my collection of gamer mice. To do that, I'm going to create my first variable. You're probably vaguely familiar with the concept of variables from algebra. In programming, we don't really solve for them, we just put them to work: we pick a variable name, like "mouse", and we store some data under it.
+We've technically written a computer program, but it's not a very impressive one. I don't want to write a program to output some text to the command line; I want to write a program to keep track of my collection of gamer mice. To do that, I'm going to create my first variable. You're probably vaguely familiar with the concept of variables from algebra. In programming, we don't really solve for them, we use them in a very straightforward way: we pick a variable name, like "mouse", and we store some data under it.
 
 ```python
 mouse = "Logitech G502 HERO SE"
@@ -49,6 +51,8 @@ print(mouse)
 ```
 
 This works too. Because: what is Chuck E. Cheese, if not a gamer mouse?
+
+## Lists and for loops
 
 Now, if I'm going to store a collection of gamer mice in a program, I want it to be able to grow to an arbitrary size. One obvious approach to store multiple mice would be to make variables called mouse1, then mouse2, then mouse3, but fundamentally that would be really tedious and limit you in the amount of mice that you could store. Instead, we're going to make a list, which will let us store an arbitrary number of separate strings in a single variable. The list is a fundamental data structure in Python and you will not get far with it.
 
@@ -70,9 +74,11 @@ for mouse in mice:
     print(mouse)
 ```
 
-This is called a for loop, and the idea is that it does something once for each item in a list. The first line kind of announces the loop; in it, you put "for" and "in" which are the magic words that start it up. Alongside them, you put the variable that's storing your list and also a new variable name which will take on the value of each of the items of the list in turn. For each of those values in that list, the lines of code that are indented will be run, with each successive list item available under this variable name, "mouse", within them. (You can indent by pressing tab on your keyboard.) So, when you run this code, you can see that all these mouse names are stored separately; in the output, they're divided up by line breaks and this extra string ("This is a mouse:") that I added.
+This is called a for loop, and the idea is that it does something once for each item in a list. The first line kind of announces the loop; you use the keywords "for" and "in" and alongside them, you put the variable that's storing your list, and before that, a new variable name which will take on the value of each of the items of the list in turn. For each of the values in that list, the lines of code that are indented will be run, with each successive list item available under this variable name, "mouse", within them. (You can indent by pressing tab on your keyboard.)
 
-We've explored quotation marks, commas, square brackets, and the magic words "for" and "in". Now we finally have to talk about the parentheses. When you put a word, like "print", and then put parentheses after it, you are implying the existence of a function, which is a basic reusable piece of code, that has that name. By putting parentheses after it, you are calling or invoking the function, and you give it some bonus information about what you want it to do by putting some kind of input inside the parentheses. In this case, Python provides for us a function called "print" that does the boring but important work of sending text to the command line, and when we call it by putting parentheses after it, we want to give it the information "print this text, please."
+## Built-in functions and numbers
+
+We've explored quotation marks, commas, square brackets, and the magic words "for" and "in". Now we finally have to talk about the parentheses. Parentheses are used to invoke functions, which are basic reusable pieces of code. Python provides for us a function called "print" that does the boring but important work of sending text to the command line. By putting parentheses after this function name, you are calling or invoking the function, and you can give it some bonus information about what you want it to do by putting some kind of input inside the parentheses. In this case, when we call "print", we want to tell it what to print in that way.
 
 There are other built-in functions. For example:
 
@@ -88,7 +94,9 @@ number_of_mice = len(mice)
 print(number_of_mice + 2)
 ```
 
-I don't know why you would want to do that specifically, but the point is, when a variable stores a number you can use it for math. (When it stores a string, not so much.) Pretty much any mathematical expression that you can type into a calculator, you can type into a programming language, and in the programming language you can use variable names when you want to use values that a program has previously stored. Just like how a function call disappears and is replaced with its result, mathematical expressions just sort of disappear when the program runs and are replaced by their answer.
+I don't know why you would want to do that specifically! But the point is, when a variable stores a number you can use it for math. (When it stores a string, not so much.) Pretty much any mathematical expression that you can type into a calculator, you can type into a programming language, and in the programming language you can use variable names when you want to use values that a program has previously stored. Just like how a function call disappears and is replaced with its result, mathematical expressions just sort of disappear when the program runs and are replaced by their answer.
+
+*The below extra built-in functions could be cut for time*
 
 There are more built-in functions in Python. Watch this:
 
@@ -98,17 +106,16 @@ mice_squared = pow(number_of_mice, 2)
 print(mice_squared)
 ```
 
-Look at that! I don't know why you would want to do it, but you can raise a number to the power of 2 (or anything else) with the `pow` function, store the result in a variable, and print that out. Notice that this function, the `pow` function, takes two different values as inputs. They both have to be numbers, and it will return the first raised to the power of the second. Now watch this.
+Look at that! I don't know why you would want to do this either, but you can raise a number to the power of 2 (or anything else) with the `pow` function, store the result in a variable, and print that out. Notice that this function, the `pow` function, takes two different values as inputs, separated by commas. They both have to be numbers, and it will return the first raised to the power of the second. Now watch this.
 
 ```python
-number_of_mice = len(mice)
-mice_squared = pow(number_of_mice, 2)
-print(mice_squared)
 print(min(number_of_mice, mice_squared))
 print(max(number_of_mice, mice_squared))
 ```
 
-`min` is a function that takes two inputs (function inputs are called arguments) and returns whichever is smaller. `max` is a function that does the same thing but returns whichever is larger. Also, look: I am putting function calls inside of function calls. When you do this, the results are evaluated from the inside out. So on the inside, the call to max is basically replaced with its result, and then the call the print happens with that as its input. You can imagine the whole thing, `max(number_of_mice, mice_squared)` being replaced by the number 9, because that's the larger number: `print(max(number_of_mice, mice_squared))` becomes just `print(9)`.
+`min` is a function that takes two inputs and returns whichever is smaller. `max` is a function that does the same thing but returns whichever is larger. Also, look: I am putting function calls inside of function calls. When you do this, the results are evaluated from the inside out. On the inside, the call to max is basically replaced with its result, and then the call the print happens with that as its input. You can imagine the whole thing, `max(number_of_mice, mice_squared)` being replaced by the number 9, because that's the larger number: `print(max(number_of_mice, mice_squared))` becomes just `print(9)`.
+
+## User input
 
 The problem is, it's too easy to figure out what the results of these function calls will be, because the values stored in the variables are completely predictable. To write a real computer program, we want them to change over time. To do this, let's create a new variable and learn one more function call that will completely change what our program is capable of.
 
@@ -118,7 +125,7 @@ print("You entered:")
 print(new_mouse)
 ```
 
-This new function, "input", initially seems to act like the print function, but there's something else that happens after your string is printed out: it collects some text from the command line and returns it, basically being replaced by that text, so that text can be stored in a variable. To see this, you have to type the text into the prompt at the command line and then hit enter. So when I run the program and type Wolfgang Amadeus Mousezart, that string goes inside the program to be stored in a variable. We can take this one step further:
+This new function, "input", initially seems to act like the print function, but there's something else that happens after your string is printed out: it collects some text from the command line and returns it so that text can be stored in a variable. To see this, you have to type the text into the prompt at the command line and then hit enter. So when I run the program and type Wolfgang Amadeus Mousezart, that string goes inside the program to be stored in a variable. We can take this one step further:
 
 ```python
 new_mouse = input("Enter a mouse name: ")
@@ -128,7 +135,7 @@ mice.append(new_mouse)
 print(mice)
 ```
 
-There are two basic types of functions in Python: those that are free-floating and those that are part of a particular data structure. The functions we've been using are free-floating functions that operate on single values; however, a list is an example of a data structure and lists have lots of member functions that are list functions that are specific to lists. For example: the member function "append". To access a member function, take a data structure, put a dot after it, put the name of the function, and then call it with parentheses and usually an input.
+There are two basic types of functions in Python: those that are free-floating and those that are part of a particular data structure. The functions we've been using up to this point are free-floating functions that operate on single values; however, a list is an example of a data structure and lists have lots of member functions that are list functions that are specific to lists. For example: the member function "append". To access a member function, take a data structure, put a dot after it, put the name of the function, and then call it with parentheses and usually an input.
 
 I say usually an input. Strings are data structures too, and they have lots of fun member functions that don't happen to need any input.
 
@@ -137,15 +144,20 @@ print(new_mouse.lower())
 print(new_mouse.upper())
 ```
 
-Structures that package functions and data together like strings and lists do are usually called objects. We will see how to create our own custom objects later. In the meantime, let's go back to making our variables less predictable. Replace the line `mice.append(new_mouse)` in that earlier code with this:
+## Conditions: while loops and if statements
+
+*This whole section could be cut for time; if statements would then be introduced under "Custom functions"*
+
+Structures that package functions and data together like strings and lists do are usually called objects. Objects are a whole entire can of worms, so let's go back to making our variables less predictable. Replace the line `mice.append(new_mouse)` in that earlier code with this:
 
 ```python
+new_mouse = input("Enter a mouse name: ")
 while new_mouse != "quit":
     mice.append(new_mouse)
     new_mouse = input("Enter a mouse name: ")
 ```
 
-This is a while loop. Like a for loop, it will run some indented code over and over. Unlike a for loop, it can run indefinitely, instead of just activating once for each item in a list. In the first line of our while loop, which uses the magic word "while", we have the symbols exclamation mark and equals. Together, these two symbols mean "does not equal." With that in mind, you can read this kind of like English: while the variable new_mouse does not equal the string "quit", run these indented lines of code. This loop would run forever if we had no opportunity to modify the value stored by `new_mouse`, but luckily we do: over and over again, the result of the call to the "input" function will be assigned to it.
+This is a while loop. Like a for loop, it will run some indented code over and over. Unlike a for loop, it can run indefinitely, instead of just activating once for each item in a list. In the first line of our while loop, which has to use the keyword "while", we have the symbols exclamation mark and equals. Together, these two symbols mean "does not equal." With that in mind, you can read this kind of like English: while the variable new_mouse does not equal the string "quit", run these indented lines of code. This loop would run forever if we had no opportunity to modify the value stored by `new_mouse`, but luckily we do: over and over again, the result of the call to the "input" function will be assigned to it.
 
 In other words, this code will first ask us to enter a mouse name before the while loop. Then it will enter the while loop unless we typed "quit"; while loops do not always get the chance to even run once. Then, it will append that new mouse name to the list "mice" and then ask us for another new mouse name. These last two steps will repeat until new_mouse is equal to the string "quit", because we typed "quit" into the command prompt. This allows us to enter and store an indefinite number of mice and then stop when we want to.
 
@@ -166,16 +178,58 @@ This code uses the magic words "if" and "else" and the function "len" that we lo
 
 Note that this is different from the condition in the while loop because we're not stopping the whole process based on it; we're printing an error message if what we want to be true isn't true, but the loop will still continue, so the user can try again. Aside from that, though, the types of conditions that can be used in while loops, in if statements, and in other places are all the same, and we could use a while loop with a greater-than symbol or an if statement with a not-equal-to symbol if we wanted.
 
-So, we now have the ability to enter into our computer the names of infinite mice. custom functions next with for loops in them. print_if_name_contains(substring), count_if_name_contains(substring).
+## Custom functions
 
+So, we now have the ability to enter into our computer the names of infinite mice. It would be nice to be able to do some more things with them, other than iterating over them and printing them out; for example, it would be nice to be able to search through them to find out if a given mouse is present in our collection. To do this, I'm actually going to switch to a new file that doesn't isn't going to ask me to enter names every time I run it: for demonstration purposes, I'm going to work with a static list of mouse names. Just imagine that I'm entering these into the command line every time.
 
+```python
+mice = ["Logitech G502 HERO SE", "Chuck E. Cheese", "Razer Basilisk X", "Wolfgang Amadeus Mousezart", "Anonymouse"]
+```
 
-### initial outline:
+I am now going to define one of my own functions. Functions start with the keyword `def`, a function name, and a parenthesized list of input variables called parameters. In this case, we want a list of strings that are names of mice as our input, which we will indicate with the input variable's name.
 
-we're writing a program to keep track of all the books, that are on a shelf. this is how you store a book's title in a variable; we could make more variables, like book1, book2, etc, but actually we can just make a list. for loops let us iterate over every book in the list and print their name out. while loops let us accept book names from user input until they say "stop." if statements can be used to only store a book's name if it meets certain criteria, like having a minimum length. we can store numbers in variables and update them over time to keep track of how many books there are. we can also divide this code into functions called like count_books_with_this_title and print_books_out and call them as many times and in whatever order that we would like.
+```python
+def count_long_names(mouse_list):
+```
 
-dicts can be used to map book names to book authors, so you can look up who wrote a certain book. you can also make a dict that stores a bunch of keys and a bunch of values for a book, so you can keep track of what year it was published and how many pages it has and stuff like that. then, you can make a whole list of dicts, to store this stuff for all of your books. do you wish you could put functions in your dict? make a class that has member functions and convert your list of dicts into a list of objects. there, now you can finally store your books on your bookshelf in an optimal form. if you want to save this data somewhere persistent, come to our database lesson. if you want to do a whole bunch of other stuff, come to all our other lessons too. if you couldn't get python working, i am so so sorry.
+At the beginning of my function, I am going to create a variable that will initially store the number 0. Notice that the code inside a function has to be indented so you know it's inside the function.
 
-notes from katie:
- - we'd have to make sure that after it's written it's not super complicated, since we don't have like beginner and advanced lessons anymore, but that would be fun :D
- - you could even expand the "libaray" idea and make it like, a library of.....i dunno something fun, and then it'd have the "cute" or "fun" aspect to it too
+```python
+def count_long_names(mouse_list):
+    counter = 0
+```
+
+I am then going to use a for loop to iterate over each item in the input list `mouse_list`. In the for loop, I will set counter to itself plus one if the mouse's name is long. Remember, the for loop will assign each successive item in the list to the variable that you specify in the first line of the loop.
+
+```python
+def count_long_names(mouse_list):
+    counter = 0
+    for a_mouse in mouse_list:
+        if len(a_mouse) > 20:
+            counter = counter + 1
+```
+
+We have reached dangerously high levels of indentation here; let's work our way up through the logic. There is a line here at the bottom that sets counter to itself plus one; so if it's 1, and this line runs, it will be set to 2. This is indented because it's under an if statement, meaning that it will only be run if the length of the structure in the variable `a_mouse` is greater than 20. That whole thing is indented because it's in a for loop that runs once for each item in the parameter `mouse_list`. And that, and the line that creates the variable `counter` and sets it to 0 to start with, is indented because it's inside the function `count_long_names`.
+
+And, the most important part of the logic: by adding one to our `counter` variable once for each mouse name that is long, we will make `counter` equal to the number of long mouse names. We are counting things.
+
+We are going to add one more line to our function so that it can fulfill it's purpose. In order for it to have an output and resolve to some meaningful data after it's called, a function needs a return statement. We don't want the function to only return a number if the if statement is true; we don't want it to return multiple times, we just want one number; but it does need to be inside the function. So, we need to put it at the level of indentation that won't put it inside the loop but will put it inside the function. And we need to put it at the end, so the number will be output after the counting happens.
+
+```python
+def count_long_names(mouse_list):
+    counter = 0
+    for a_mouse in mouse_list:
+        if len(a_mouse) > 20:
+            counter = counter + 1
+    return counter
+```
+
+And that's it; that's our function. We can call it now:
+
+```python
+print(count_long_names(mice))
+```
+
+And `mice` will be passed in as the input to the function, so that its value will be accessible under the name `mouse_list` inside the function, and the function will run, and it will return, and the call will be replaced, behind the scenes, with the number it returns, and then `print` will be called with that number.
+
+Functions are useful when you need to reuse code and run it over and over again at different times and places, but they're also just very useful for organizing code. Code that performs a distinct function should probably be placed in a separate function; this kind of labels code so that you can see what it does and separates it into isolated tasks, which makes code easier to read and think about. So functions are extremely important.
