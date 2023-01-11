@@ -53,7 +53,7 @@ This works too. Because: what is Chuck E. Cheese, if not a gamer mouse?
 
 ## Lists and for loops
 
-Now, if I'm going to store a collection of gamer mice in a program, I want it to be able to grow to an arbitrary size. One obvious approach to store multiple mice would be to make variables called mouse1, then mouse2, then mouse3, but fundamentally that would be really tedious and limit you in the amount of mice that you could store. Instead, we're going to make a list, which will let us store an arbitrary number of separate strings in a single variable. The list is a fundamental data structure in Python and you will not get far with it.
+Now, if I'm going to store a collection of gamer mice in a program, I want it to be able to grow to an arbitrary size. One obvious approach to store multiple mice would be to make variables called mouse1, then mouse2, then mouse3, but fundamentally that would be really tedious and limit you in the amount of mice that you could store. Instead, we're going to make a list, which will let us store an arbitrary number of separate strings in a single variable. The list is a fundamental data structure in Python and you will not get far without it.
 
 ```python
 mice = ["Logitech G502 HERO SE", "Chuck E. Cheese", "Razer Basilisk X"]
