@@ -1,5 +1,4 @@
 # Python from Scratch - How to Write a Computer Program.
-An introduction to Python and perhaps to programming in general.
 
 ## Setup
 
@@ -25,11 +24,11 @@ print("Hello, World!")
 
 Write that, and then save it. Then, leave the text editor open, but run your new program in the command line by typing `python inventory.py`. (If you're on a Linux operating system that previously used old versions of Python, you might have to specify the version you want by using `python3 inventory.py` instead.)
 
-Did that work? If it did: great! The boring part is over. Now we can start programming. The hardest part of running Python programs is always the setup, even in this case where it's a really simple one.
+Did that work? If it did: great! The boring part is over. Now we can start programming. The hardest part of running Python programs is often the setup, even in this case where it's a really simple one.
 
 ## Variables and strings
 
-You may have noticed that we have now written a computer program. It outputs the words "Hello, World" into the command line in which it was run. The word "print" in computer programming actually means "output this text to the command line;" it used to involve printers, but since then, screens were invented. The punctuation requirements here are pretty specific: you have to have the word "print", an open parenthesis, a quotation mark, some text, a closing quotation mark, and a closing parenthesis. All of this punctuation is part of a system: I promise. And now we can start to pull it apart and understand how it works.
+You may have noticed that we have now written a computer program. It outputs the words "Hello, World" into the command line in which it was run. The word "print" in computer programming actually means "output this text to the command line;" it used to involve printers, but since then, screens have been invented. The punctuation requirements here are pretty specific: you have to have the word "print", an open parenthesis, a quotation mark, some text, a closing quotation mark, and a closing parenthesis. All of this punctuation is part of an understandable system: I promise. And now we can start to pull it apart and understand how it works.
 
 We've technically written a computer program, but it's not a very impressive one. I don't want to write a program to output some text to the command line; I want to write a program to keep track of my collection of gamer mice. To do that, I'm going to create my first variable. You're probably vaguely familiar with the concept of variables from algebra. In programming, we don't really solve for them, we use them in a very straightforward way: we pick a variable name, like "mouse", and we store some data under it.
 
@@ -37,7 +36,7 @@ We've technically written a computer program, but it's not a very impressive one
 mouse = "Logitech G502 HERO SE"
 ```
 
-If you put some text in quotation marks, you create a string, which is a type of data that you can have in a program. The quotation marks mean, "this text is here purely to be used as data; it does not contain commands or instructions or stuff the program needs to do." Equals signs assign data to variable names. You probably get the idea. Now, I want to change the print statement. Instead of printing out Hello, World, I want to print the name of my mouse. I can do that without retyping the mouse's name by using the variable like this:
+If you put some text in quotation marks, you create a string, which is text-based data that you can have in a program. The quotation marks mean, "this text is here purely to be used as data; it does not contain commands or instructions or stuff the program needs to do." Equals signs assign data to variable names. You probably get the idea. Now, I want to change the print statement. Instead of printing out Hello, World, I want to print the name of my mouse. I can do that without retyping the mouse's name by using the variable like this:
 
 ```python
 print(mouse)
@@ -74,7 +73,7 @@ for mouse in mice:
     print(mouse)
 ```
 
-This is called a for loop, and the idea is that it does something once for each item in a list. The first line kind of announces the loop; you use the keywords "for" and "in" and alongside them, you put the variable that's storing your list, and before that, a new variable name which will take on the value of each of the items of the list in turn. For each of the values in that list, the lines of code that are indented will be run, with each successive list item available under this variable name, "mouse", within them. (You can indent by pressing tab on your keyboard.)
+This is called a "for loop", and the idea is that it does something once for each item in a list. The first line kind of announces the loop; you use the keywords "for" and "in" and alongside them, you put the variable that's storing your list, and before that, a new variable name which will take on the value of each of the items of the list in turn. For each of the values in that list, the lines of code that are indented will be run, with each successive list item available under the new variable name, "mouse", within them. (You can indent lines by pressing tab on your keyboard in front of them.)
 
 ## Built-in functions and numbers
 
@@ -144,11 +143,13 @@ print(new_mouse.lower())
 print(new_mouse.upper())
 ```
 
+Structures that package functions and data together like strings and lists do are usually called objects. Objects are a whole entire can of worms, so let's go back to making our variables less predictable.
+
 ## Conditions: while loops and if statements
 
 *This whole section could be cut for time; if statements would then be introduced under "Custom functions"*
 
-Structures that package functions and data together like strings and lists do are usually called objects. Objects are a whole entire can of worms, so let's go back to making our variables less predictable. Replace the line `mice.append(new_mouse)` in that earlier code with this:
+Replace the line `mice.append(new_mouse)` in that earlier code with this:
 
 ```python
 new_mouse = input("Enter a mouse name: ")
@@ -180,56 +181,53 @@ Note that this is different from the condition in the while loop because we're n
 
 ## Custom functions
 
-So, we now have the ability to enter into our computer the names of infinite mice. It would be nice to be able to do some more things with them, other than iterating over them and printing them out; for example, it would be nice to be able to search through them to find out if a given mouse is present in our collection. To do this, I'm actually going to switch to a new file that doesn't isn't going to ask me to enter names every time I run it: for demonstration purposes, I'm going to work with a static list of mouse names. Just imagine that I'm entering these into the command line every time.
+So, we now have the ability to enter into our computer the names of infinite mice. A lot of computer applications, like library card catalogs and inventory systems, are basically just tasked with storing lists and giving users to ability to search and filter them. We are halfway there. To do this, I'm actually going to switch to a new file that doesn't isn't going to ask me to enter names every time I run it: for demonstration purposes, I'm going to work with a static list of mouse names. This is basically just cheating to avoid entering them all into the command line.
 
 ```python
-mice = ["Logitech G502 HERO SE", "Chuck E. Cheese", "Razer Basilisk X", "Wolfgang Amadeus Mousezart", "Anonymouse"]
+mice = ["Logitech G502 HERO SE", "Logitech MS Master 3S", "Hatsune Squeaku", "Wolfgang Amadeus Mousezart", "Anonymouse"]
 ```
 
-I am now going to define one of my own functions. Functions start with the keyword `def`, a function name, and a parenthesized list of input variables called parameters. In this case, we want a list of strings that are names of mice as our input, which we will indicate with the input variable's name.
+Anyway, the idea is: if we have a list containing, let's say, thousands and thousands of mice, we want the computer to be able to find specific items for us. To make it do this, we are going to define a custom function called `search_for`. To define a function, you write the keyword "def", the name you're giving to the function, and then parentheses with a list (comma-separated) of the input variables you want the function to have.
 
 ```python
-def count_long_names(mouse_list):
+def search_for(mouse_list, search_term):
 ```
 
-At the beginning of my function, I am going to create a variable that will initially store the number 0. Notice that the code inside a function has to be indented so you know it's inside the function.
+These input variables, which are called parameters, don't have any intrinsic value. However, when the function is called, they will be given the values that are placed within the parentheses at that point in the code. The parameters are placeholders here but when the function is called, they can become anything. Now we need an indented block of code that will actually run at that point, when the function is called.
 
 ```python
-def count_long_names(mouse_list):
-    counter = 0
+def search_for(mouse_list, search_term):
+    for mouse in mouse_list:
+        if search_term == mouse:
+            print("Found:")
+            print(mouse)
 ```
 
-I am then going to use a for loop to iterate over each item in the input list `mouse_list`. In the for loop, I will set counter to itself plus one if the mouse's name is long. Remember, the for loop will assign each successive item in the list to the variable that you specify in the first line of the loop.
+We're starting to get to a dangerous level of indentation, so let's break this down. All of the code that is part of the function and thus will run when it is called needs to be indented to indicate that it's part of the function. Then, we start a for loop; remember, this will set the new variable `mouse` equal to each successive item in our input variable (parameter) `mouse_list`. The code that is repeatedly run by the for loop has to be indented too to indicate that it's inside the loop. Then we have an if statement, which specifies that the indented code below it will only run if a certain condition is true. In this case, the condition compares the parameter `search_term` to the loop variable `mouse` using the double equals sign operator, which looks for equality between the thing on the left and the thing on the right of it. (The single equals sign needs to be used only for assignment, not for comparison.) And the indented code under the if statement, which will be run if the condition is true, simply prints the loop variable `mouse` out.
+
+Whew. We can now call this function with some inputs:
 
 ```python
-def count_long_names(mouse_list):
-    counter = 0
-    for a_mouse in mouse_list:
-        if len(a_mouse) > 20:
-            counter = counter + 1
+search_for(mice, "Anonymouse")
 ```
 
-We have reached dangerously high levels of indentation here; let's work our way up through the logic. There is a line here at the bottom that sets counter to itself plus one; so if it's 1, and this line runs, it will be set to 2. This is indented because it's under an if statement, meaning that it will only be run if the length of the structure in the variable `a_mouse` is greater than 20. That whole thing is indented because it's in a for loop that runs once for each item in the parameter `mouse_list`. And that, and the line that creates the variable `counter` and sets it to 0 to start with, is indented because it's inside the function `count_long_names`.
-
-And, the most important part of the logic: by adding one to our `counter` variable once for each mouse name that is long, we will make `counter` equal to the number of long mouse names. We are counting things.
-
-We are going to add one more line to our function so that it can fulfill it's purpose. In order for it to have an output and resolve to some meaningful data after it's called, a function needs a return statement. We don't want the function to only return a number if the if statement is true; we don't want it to return multiple times, we just want one number; but it does need to be inside the function. So, we need to put it at the level of indentation that won't put it inside the loop but will put it inside the function. And we need to put it at the end, so the number will be output after the counting happens.
+The parameter `mouse_list` will take on the value of `mice` and the parameter `search_term` will take on the value of the string `"Anonymouse"`, and that mouse will be printed out when the function runs with those variables. That's all very well, but it's very predictable since the search term string is baked right into the program. Let's try getting it from user input:
 
 ```python
-def count_long_names(mouse_list):
-    counter = 0
-    for a_mouse in mouse_list:
-        if len(a_mouse) > 20:
-            counter = counter + 1
-    return counter
+term_from_input = input("Enter a search term: ")
+search_for(mice, term_from_input)
 ```
 
-And that's it; that's our function. We can call it now:
+Now we're using something from user input as a search term, and it can be different every time. So that's cool. But the program is still kind of boring since we're getting out exactly what we're putting in. Let's make one small change to our `search_for` function:
 
 ```python
-print(count_long_names(mice))
+def search_for(mouse_list, search_term):
+    for mouse in mouse_list:
+        if search_term in mouse:  # <-- in!
+            print("Found:")
+            print(mouse)
 ```
 
-And `mice` will be passed in as the input to the function, so that its value will be accessible under the name `mouse_list` inside the function, and the function will run, and it will return, and the call will be replaced, behind the scenes, with the number it returns, and then `print` will be called with that number.
+Now, instead of the `print` code running if the search term and the mouse name are equal, they will run if the search term is merely somewhere in the mouse name. This means I can now just use "Logitech" as my input and get the full name of every Logitech mouse stored in the program.
 
-Functions are useful when you need to reuse code and run it over and over again at different times and places, but they're also just very useful for organizing code. Code that performs a distinct function should probably be placed in a separate function; this kind of labels code so that you can see what it does and separates it into isolated tasks, which makes code easier to read and think about. So functions are extremely important.
+So now, after much tumult and turmoil, we have a searchable database of mouse names. 
