@@ -30,7 +30,9 @@ Did that work? If it did: great! The boring part is over. Now we can start progr
 
 You may have noticed that we have now written a computer program. It outputs the words "Hello, World" into the command line in which it was run. The word "print" in computer programming actually means "output this text to the command line;" it used to involve printers, but since then, screens have been invented. The punctuation requirements here are pretty specific: you have to have the word "print", an open parenthesis, a quotation mark, some text, a closing quotation mark, and a closing parenthesis. All of this punctuation is part of an understandable system: I promise. And now we can start to pull it apart and understand how it works.
 
-We've technically written a computer program, but it's not a very impressive one. I don't want to write a program to output some text to the command line; I want to write a program to keep track of my collection of gamer mice. To do that, I'm going to create my first variable. You're probably vaguely familiar with the concept of variables from algebra. In programming, we don't really solve for them, we use them in a very straightforward way: we pick a variable name, like "mouse", and we store some data under it.
+We've technically written a computer program, but it's not a very impressive one. Let's assume, for the sake of argument, that I have a large collection of gamer mice. It is so large that I need to be able to store them in a computer program and then search through them. A lot of computer programs, like inventory systems or library catalogs, basically exist just to store items and search through them. 
+
+To start storing mice in my program, I'm going to create my first variable. You're probably vaguely familiar with the concept of variables from algebra. In programming, we don't really solve for them, we use them in a very straightforward way: we pick a variable name, like "mouse", and we store some data under it.
 
 ```python
 mouse = "Logitech G502 HERO SE"
@@ -42,18 +44,18 @@ If you put some text in quotation marks, you create a string, which is text-base
 print(mouse)
 ```
 
-Run this program on the command line by typing `python inventory.py` (or maybe `python3 inventory.py`.) As you can see, whereas before we were printing a string, we are now printing a variable, and we are getting the string that was stored in that variable. In general, variable names give you a way to refer to data without writing all the data out; you can think of them as being automatically replaced by that data behind the scenes. Change it and try this again:
+Run this program on the command line by typing `python inventory.py` (or maybe `python3 inventory.py`.) As you can see, whereas before we were printing a string, we are now printing a variable, and we are getting the string that was stored in that variable. In general, variable names give you a way to refer to data without writing all the data out; you can think of them as being automatically replaced by that data behind the scenes. Change it to something random and try again:
 
 ```python
 mouse = "Chuck E. Cheese"
 print(mouse)
 ```
 
-This works too. Because: what is Chuck E. Cheese, if not a gamer mouse?
+This works too. Really, after all, what is Chuck E. Cheese, if not a gamer mouse?
 
 ## Lists and for loops
 
-Now, if I'm going to store a collection of gamer mice in a program, I want it to be able to grow to an arbitrary size. One obvious approach to store multiple mice would be to make variables called mouse1, then mouse2, then mouse3, but fundamentally that would be really tedious and limit you in the amount of mice that you could store. Instead, we're going to make a list, which will let us store an arbitrary number of separate strings in a single variable. The list is a fundamental data structure in Python and you will not get far without it.
+Now, if I'm going to store a collection of things in a program, I want it to be able to grow to an arbitrary size. One obvious approach to store multiple mice would be to make variables called mouse1, then mouse2, then mouse3, but fundamentally that would be really tedious and limit you in the amount of mice that you could store. Instead, we're going to make a list, which will let us store an arbitrary number of separate strings in a single variable. The list is a fundamental data structure in Python and you will not get far without it.
 
 ```python
 mice = ["Logitech G502 HERO SE", "Chuck E. Cheese", "Razer Basilisk X"]
@@ -73,7 +75,7 @@ for mouse in mice:
     print(mouse)
 ```
 
-This is called a "for loop", and the idea is that it does something once for each item in a list. The first line kind of announces the loop; you use the keywords "for" and "in" and alongside them, you put the variable that's storing your list, and before that, a new variable name which will take on the value of each of the items of the list in turn. For each of the values in that list, the lines of code that are indented will be run, with each successive list item available under the new variable name, "mouse", within them. (You can indent lines by pressing tab on your keyboard in front of them.)
+This kind of loop is called a "for loop", and the idea is that it does something once for each item in a list. The first line kind of announces the loop; you use the keywords "for" and "in" and alongside them, you put the variable that's storing your list, and also, before that, a new variable name that will be used for each item in the list. For each of the values in that list, the lines of code that are indented will be run, with each successive list item available under the new variable name, "mouse", within them. (You can indent lines by pressing tab on your keyboard in front of them.)
 
 ## Built-in functions and numbers
 
@@ -149,7 +151,7 @@ Structures that package functions and data together like strings and lists do ar
 
 *This whole section could be cut for time; if statements would then be introduced under "Custom functions"*
 
-Objects are a whole entire can of worms, so let's go back to making our variables less predictable. Replace the line `mice.append(new_mouse)` in that earlier code with this:
+Objects are a whole extra can of worms, so let's go back to making our variables less predictable. Replace the line `mice.append(new_mouse)` in that earlier code with this:
 
 ```python
 new_mouse = input("Enter a mouse name: ")
@@ -183,19 +185,19 @@ So, we now have the ability to enter into our computer the names of infinite mic
 
 ## Custom functions
 
-A lot of computer applications, like library card catalogs and inventory systems, are basically just tasked with storing lists and giving users to ability to search and filter them. We are halfway there. To do this, I'm actually going to switch to a new file that isn't going to ask me to enter names every time I run it: for demonstration purposes, I'm going to work with a static list of mouse names. This is basically just cheating to avoid entering them all into the command line.
+We are halfway to having a program that can store a catalog of mouse names and search through them. To do this, I'm actually going to switch to a new file that isn't going to ask me to enter names every time I run it: for demonstration purposes, I'm going to work with a static list of mouse names. This is basically just cheating to avoid entering them all into the command line.
 
 ```python
 mice = ["Logitech G502 HERO SE", "Logitech MS Master 3S", "Tailer Swift", "Anonymouse", "Hatsune Squeaku"]
 ```
 
-Anyway, the idea is: if we have a list containing, potentially, thousands and thousands of mice, we want the computer to be able to find specific items in it for us. To make it do this, we are going to define a custom function called `search_for`. To define a function, you write the keyword "def", the name you're giving to the function, and then parentheses with a list of the input variables you want the function to have (in this case only one). The input variables consist of things you want to potentially change every time the function is run; otherwise, you can use variables from outside the function normally, although doing that too much can get a little bit disorganized.
+Now, we want to implement search functionality; to do this, we are going to define a custom function called `search_for`. To define a function, you write the keyword "def", the name you're giving to the function, and then parentheses with a list of the input variables you want the function to have (in this case only one). The input variables consist of things you want to potentially change every time the function is run; otherwise, you can use the so-called global variables from outside the function normally, although doing that too much can get a little bit disorganized.
 
 ```python
 def search_for(search_term):
 ```
 
-This input variables, which is called a parameter, doesn't have any intrinsic value. However, when the function is called, it will be given the value that is placed within the parentheses at that point in the code. In other words, parameters are placeholders initially, but when the function is called, they can become anything. Now we need an indented block of code that will actually run at the point at which the function is called.
+This input variable `search_term`, which is called a parameter, doesn't have any intrinsic value. However, when the function is called, it will be given the value that is placed within the parentheses at that point in the code; it's basically a placeholder for now. Now we need an indented block of code that will actually run at the point at which the function is called.
 
 ```python
 def search_for(search_term):
@@ -234,32 +236,4 @@ Now, instead of the `print` code running if the search term and the mouse name a
 
 So now, after much tumult and turmoil, we have a searchable database of mouse names.
 
-## Dicts for more data
 
-There is another fun data structure that stores information in a very different way from lists. It is known as a dictionary, usually abbreviated to "dict", and it gives you a similar ability to looking up a word in a dictionary to see what its definition is, except the definition can be whatever you want. The thing you're looking up is called a key, and the "definition" that you get as a result is called a value. In this case, in addition to being able to look up the name of a mouse, I want to be able to look up what game each mouse is best at or best for. To do that, I'm going to define a variable called games right under the variable `mice`. The syntax of a dict looks like this.
-
-```python
-games = {
-    "Logitech G502 HERO SE": "Sonic",
-    "Logitech MS Master 3S": "Mario",
-    "Tailer Swift": "Apex Legends",
-    "Anonymouse": "Civilization V",
-    "Hatsune Squeaku": "Osu"
-}
-```
-
-In a dict, you put the key that you want to be able to look up, then a colon, then the value that you want to be the result of looking up that key. Then you put a comma and add as many more key-value pairs as you like. (You don't have to type all of them, just the ones you want to look up)
-
-In the `search_for` function, I can now print out the game that a mouse is best at by looking it up, using the mouse name as a key:
-
-```python
-def search_for(search_term):
-    for mouse in mice:
-        if search_term in mouse:
-            print("Found:")
-            print(mouse)
-            print("It is best at playing:")
-            print(games[mouse])
-```
-
-So yeah. We're running code for every mouse name in the list, checking to see if a search term is present in it, and if it is, we're printing the mouse name and then using it as a key to look up a game in this dict, and then printing that.
