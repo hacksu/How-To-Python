@@ -236,4 +236,74 @@ Now, instead of the `print` code running if the search term and the mouse name a
 
 So now, after much tumult and turmoil, we have a searchable database of mouse names.
 
+## Named tuples for details
 
+Temporarily comment out the lines with the word "input" in them for this section. In other words, put the character "#" in front of them, which will prevent them from being executed.
+
+This is all very well as a way to search through names, but it would be nice if we had a way to store more data than just the name of a mouse. Right now, each mouse is a single string; if we had multiple strings per mouse, we could store things like what game the mouse is best at. The best way to do that is to use objects.
+
+An object is basically a box that you can store variables in. To represent a single mouse, I would want to store the variables "name", "fav_game", and "squeakiness". The first two will be strings and the last will be a number on a scale from 1 to 10. To do this, I can make an object that represents a mouse and that stores all of those variables. You can create the object and provide values for these variables, store the object just like we've been storing strings, and then open the box to pull any one of these variables out. And you can create however many objects you want, and thus have an arbitrary number of mice. Everywhere where we have been using one string, we can instead use an object that represents three different variables; in this way, we can store more information.
+
+To create an object in Python, you create a class, which is basically a template for an object. In this lesson, we're going to create a very simple class in a very quick and simple way. At the top of your Python file, put this:
+
+```python
+from collections import namedtuple
+```
+
+Python contains a lot of built-in functions that aren't available by default but can be made available with an import statement like this one. This import statement makes the function `namedtuple` available: we can use it to create a class like this:
+
+```python
+MouseClass = namedtuple("MouseClass", ["name", "fav_game", "squeakiness"])
+```
+
+The `namedtuple` function takes two inputs. The first is the name of the class (the template for objects) that you're creating; the second is a list of names of the variables that you want the objects to store. The thing that we're storing in the variable `MouseClass` is a new function that will let us actually create objects, now that we have the class/the template.
+
+```python
+mouse_object = MouseClass("Ratsputin", "Overwatch", 7)
+```
+
+If you print your mouse object, you'll see all its internal variables clearly displayed:
+
+```python
+print(mouse_object)
+```
+
+And if you ever want to access one specifically, you can put a dot and then the variable name.
+
+```python
+print(mouse_object.fav_game)
+```
+
+We can create a whole list of these objects, just like we created a list of strings:
+
+```python
+mice_objects = [MouseClass("Ratsputin", "Overwatch", 7), MouseClass("Sock-Rat-es", "League of Legends", 8), MouseClass("Hatsune Squeaku", "Osu", 5)]
+```
+
+And we can search through them with only slight modifications to our search function. Aside from going through a different list, we need to specifically say that we're looking in the `name` variable for our search term, since there are three things being stored now.
+
+```python
+def search_for(search_term):
+    for mouse in mice_objects:
+        if search_term in mouse.name:
+            print("Found:")
+            print(mouse)
+
+search_for("Rat")
+```
+
+Or we could search through the game names, just by changing `name` to `fav_game`.
+
+```python
+def search_for(search_term):
+    for mouse in mice_objects:
+        if search_term in mouse.fav_game:
+            print("Found:")
+            print(mouse)
+
+search_for("League")
+```
+
+## Conclusion
+
+We now have a Python program that lets you store mouse data and then search through it. I imagine this will be helpful for all of your lucrative e-sports careers. Along the way, we have learned about strings, variables, lists, loops, input, functions, and objects. This was basically a semester-long introductory class in one session. In the future, you may want to learn about more built-in functions that can be imported to access them in Python; you will probably want to create more complicated classes that let you define custom functions in the objects that you create; you may want to know how to store mouse data externally to program source code but still without having to input it every time the programs runs. But this should give you a basic foundation for doing stuff with Python. Have fun.
