@@ -240,23 +240,23 @@ So now, after much tumult and turmoil, we have a searchable database of mouse na
 
 Temporarily comment out the lines with the word "input" in them for this section. In other words, put the character "#" in front of them, which will prevent them from being executed.
 
-This is all very well as a way to search through names, but it would be nice if we had a way to store more data than just the name of a mouse. Right now, each mouse is a single string; if we had multiple strings per mouse, we could store things like what game the mouse is best at. The best way to do that is to use objects.
+This is all very well as a way to search through names, but it would be nice if we had a way to store more data than just the name of a mouse. Right now, each mouse is a single string; what would be better would be to have a collection of values for each mouse, so we can know more things about each of them. To do this, we can create objects.
 
-An object is basically a box that you can store variables in. To represent a single mouse, I would want to store the variables "name", "fav_game", and "squeakiness". The first two will be strings and the last will be a number on a scale from 1 to 10. To do this, I can make an object that represents a mouse and that stores all of those variables. You can create the object and provide values for these variables, store the object just like we've been storing strings, and then open the box to pull any one of these variables out. And you can create however many objects you want, and thus have an arbitrary number of mice. Everywhere where we have been using one string, we can instead use an object that represents three different variables; in this way, we can store more information.
+An object is a value that can contain all of the data that you have about a specific noun: a person, place, or thing. We've been representing mice with strings that contain their names, but objects let us represent mice more fully. To represent a single mouse, I would want to store the variables "name", "fav_game", and "squeakiness"; the first two will be strings and the last will be a number on a scale from 1 to 10. With an object, we can store all of these things for each mouse.
 
-To create an object in Python, you create a class, which is basically a template for an object. In this lesson, we're going to create a very simple class in a very quick and simple way. At the top of your Python file, put this:
+Before you create an object in Python, you must create a class, which is basically a template for an object. In this lesson, we're going to create a very simple class in a very quick and simple way. At the very top of your Python file, put this:
 
 ```python
 from collections import namedtuple
 ```
 
-Python contains a lot of built-in functions that aren't available by default but can be made available with an import statement like this one. This import statement makes the function `namedtuple` available: we can use it to create a class like this:
+Python contains a lot of built-in functions that aren't available by default but can be made available with an import statement like this one. This import statement makes the function `namedtuple` available. We can use it to create a class like this:
 
 ```python
 MouseClass = namedtuple("MouseClass", ["name", "fav_game", "squeakiness"])
 ```
 
-The `namedtuple` function takes two inputs. The first is the name of the class (the template for objects) that you're creating; the second is a list of names of the variables that you want the objects to store. The thing that we're storing in the variable `MouseClass` is a new function that will let us actually create objects, now that we have the class/the template.
+The `namedtuple` function takes two inputs. The first is the name of the class (the template for objects) that you're creating; the second is a list of names of the variables that you want the objects to store. The thing that we're storing in the variable `MouseClass` over there on the left is a new function that will let us actually create objects, now that we have the class (the template.)
 
 ```python
 mouse_object = MouseClass("Ratsputin", "Overwatch", 7)
@@ -304,6 +304,8 @@ def search_for(search_term):
 search_for("League")
 ```
 
+And now, if you uncomment (remove the "#" in front of) those input lines from before, we can dynamically search through this collection of mice and see all kinds of data about the results.
+
 ## Conclusion
 
-We now have a Python program that lets you store mouse data and then search through it. I imagine this will be helpful for all of your lucrative e-sports careers. Along the way, we have learned about strings, variables, lists, loops, input, functions, and objects. This was basically a semester-long introductory class in one session. In the future, you may want to learn about more built-in functions that can be imported to access them in Python; you will probably want to create more complicated classes that let you define custom functions in the objects that you create; and you may even want to know how to store mouse data in databases or files outside of your program. But this should give you a basic foundation for doing stuff with Python. Have fun.
+We now have a Python program that lets you store mouse data and then search through it. I imagine this will be helpful for all of your lucrative e-sports careers. Along the way, we have learned about strings, variables, lists, loops, input, functions, and objects. This was basically a semester-long introductory class in one session. In the future, you may want to learn about more of the classes and functions built into Python; you will probably want to create classes in which you can define custom functions that are attached to specific objects; and you may even want to know how to store mouse data in databases or files outside of your program to be saved and loaded from. But this should give you a basic foundation for doing stuff with Python. Have fun.
